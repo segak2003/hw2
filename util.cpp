@@ -15,7 +15,10 @@ std::string convToLower(std::string src)
     to a set of words based on the criteria given in the assignment **/
 std::set<std::string> parseStringToWords(string rawWords)
 {
-
+  //std::cout << "*****************************************"<< endl;
+  //std::cout << "      ENTERING PARSE STRING TO WORDS" << endl;
+  //std::cout << "*****************************************"<< endl;
+  //std::cout << "Rawwords:  " << rawWords << endl;
   set<string> keywords;
   stringstream is(rawWords);
   string word;
@@ -41,13 +44,13 @@ std::set<std::string> parseStringToWords(string rawWords)
 
       if(isalpha(word[i])) 
       {
-        //cout << "ADDING CHAR:  " << word[i] << endl;
+        
         tempWord += word[i];
       }
     }
 
     if(tempWord.length() >= 2) {
-      cout << "ADDING KEYWORD TO SET:  " << tempWord << endl;
+      //std::cout << "ADDING KEYWORD TO SET:  " << tempWord << endl;
       keywords.insert(convToLower(tempWord));
     }
   }

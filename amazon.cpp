@@ -24,14 +24,6 @@ void displayProducts(vector<Product*>& hits);
 
 int main(int argc, char* argv[])
 {
-  string str = "keyowrds blah acoustic USC-CSCI";
-
-  set<string> myset = parseStringToWords(str);
-
-  for (const std::string& word : myset) {
-    cout << word << endl;
-  }
-
     if(argc < 2) {
         cerr << "Please specify a database file" << endl;
         return 1;
@@ -85,9 +77,14 @@ int main(int argc, char* argv[])
             if(cmd == "AND") {
                 string term;
                 vector<string> terms;
+                set<string> terms_set;
+
                 while(ss >> term) {
-                    term = convToLower(term);
-                    terms.push_back(term);
+                  term = convToLower(term);
+                  terms_set = parseStringToWords(term);
+                  for(const string& word : terms_set) {
+                    terms.push_back(word);
+                  }
                 }
                 hits = ds.search(terms, 0);
                 displayProducts(hits);
@@ -115,14 +112,14 @@ int main(int argc, char* argv[])
             else if(cmd == "ADD") 
             {
               string userName;
-              int hitIndex;
-
-              if(ss >> userName >> hitIndex) {
+              int hit_result_index;
+ 
+              if(ss >> userName >> hit_result_index) {
                 userName = convToLower(userName);
                   //what to do if user or product not found?
-                  cout << "hitIndex: " << hitIndex << " size " << hits.size() << endl;
-                  if(hitIndex < hits.size() && hitIndex >= 0) {
-                    Product* currProduct = hits[hitIndex -1];
+                  //std::cout << "hitIndex: " << hit_result_index << " size " << hits.size() << endl;
+                  if(hit_result_index < hits.size() && hit_result_index >= 0) {
+                    Product* currProduct = hits[hit_result_index];
 
                     User* currUser = ds.getUser(userName);
 
@@ -135,7 +132,7 @@ int main(int argc, char* argv[])
                     }
                   }
                   else {
-                    cout << "1 Invalid request" << endl;
+                    cout << "Invalid request" << endl;
                   }
               }
               else{
@@ -180,10 +177,11 @@ int main(int argc, char* argv[])
                 }
                 
                 if(validUser == false) {
-                cout << "invalid username" << endl;
+                  cout << "invalid username" << endl;
                 }
-
-                ds.viewCart(currUser);
+                else{
+                  ds.viewCart(currUser);
+                }
               }
               else {
                 cout << "invalid request" << endl;

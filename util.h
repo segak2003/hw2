@@ -7,8 +7,6 @@
 
 
 //***********************
-using namespace std;
-
 /** Complete the setIntersection and setUnion functions below
  *  in this header file (since they are templates).
  *  Both functions should run in time O(n*log(n)) and not O(n^2)
@@ -16,23 +14,24 @@ using namespace std;
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-  cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << endl;
-  cout << "          ENTERING SET-INTERSECTION          " << endl;
-  cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << endl;
-  cout << endl << endl << endl;
+  //std::cout << std::endl;
+  //std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
+  //std::cout << "              ENTERING SET-INTERSECTION          " << std::endl;
+  //std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
+  //std::cout << std::endl << std::endl;
 
   typename std::set<T>::iterator it = s1.begin();
   typename std::set<T>::iterator it2 = s2.begin();
 
   std::set<T> intersectionSet;
-  int i = 0;
+  
   // set intersection = AND search  returns items with ALL words 
   while(it != s1.end() && it2 != s2.end()) 
   {
-    if(i == 300) {
-      cout<< "PAST" << endl;
+    /*if(i == 300) {
+      //std::cout<< "PAST 300" << endl;
       break;
-    }
+    }*/
     if(*it < *it2) 
     {
       it++;
@@ -40,9 +39,10 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
   
     if(*it == *it2) 
     {
-      //.
+      //std::cout << "intersection found" << std::endl;
       intersectionSet.insert(*it);
       it2++;
+      it++;
     }
     /* this means the current element in s2 is not in s1 so 
      * move onto the next in element in s2 
@@ -51,7 +51,7 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
     {
       it2++;
     }
-    i++;
+    //i++;
   }
   
   return intersectionSet;
@@ -64,6 +64,12 @@ std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
   typename std::set<T>::iterator it = s1.begin();
   typename std::set<T>::iterator it2 = s2.begin();
   std::set<T> unionSet;
+
+  //std::cout << std::endl;
+  //std::cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << std::endl;
+  //std::cout << "             ENTERING SET-UNION          " << std::endl;
+  //std::cout << "^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^" << std::endl;
+  //std::cout << std::endl << std::endl;
 
   while(it != s1.end() || it2 != s2.end())
   {

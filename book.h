@@ -25,8 +25,8 @@ class Book : public Product
   void dump(std::ostream& os) const;
 
   private:
-    std::string ISBN_;
     std::string author_;
+    std::string ISBN_;
 };
 
 #endif

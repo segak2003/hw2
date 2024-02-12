@@ -40,14 +40,20 @@ string Clothing::displayString() const
 {
   ostringstream ss;
 
-  ss << name_ << "\n" << brand_ << "\n" << size_;
+  ss << name_  << "\n" << "Size: " << size_ << " Brand: " 
+      << brand_ << "\n";
+  
+  ss << fixed << setprecision(2) << price_
+      << " " << qty_ << " left.";
 
   return ss.str();
 }
 
 void Clothing::dump(ostream& os) const 
 {
+  os << fixed << setprecision(2);
+
   os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ 
-            << "\n" << brand_  << "\n" << size_ << endl;    
+            << "\n" << size_  << "\n" <<  brand_ << "\n";    
 }
 

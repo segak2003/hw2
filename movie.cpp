@@ -40,12 +40,19 @@ string Movie::displayString() const
 {
   ostringstream ss;
 
-  ss << name_  << "\n" << genre_ << "\n" << rating_;
+  ss << name_  << "\n" << "Genre: " << genre_ << " Rating: " 
+      << rating_ << "\n";
+  
+  ss << fixed << setprecision(2) << price_ 
+      << " " << qty_ << " left.";
+
   return ss.str();
 }
 
 void Movie::dump(ostream& os) const 
 {
+  os << fixed << setprecision(2);
+
   os << category_ << "\n" << name_ << "\n" << price_ << "\n" << qty_ 
           << "\n" << genre_ << "\n" << rating_ << endl;                                
 }

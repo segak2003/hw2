@@ -14,12 +14,7 @@
 template <typename T>
 std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
 {
-  //std::cout << std::endl;
-  //std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
-  //std::cout << "              ENTERING SET-INTERSECTION          " << std::endl;
-  //std::cout << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&" << std::endl;
-  //std::cout << std::endl << std::endl;
-
+ 
   typename std::set<T>::iterator it = s1.begin();
   typename std::set<T>::iterator it2 = s2.begin();
 
@@ -28,10 +23,6 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
   // set intersection = AND search  returns items with ALL words 
   while(it != s1.end() && it2 != s2.end()) 
   {
-    /*if(i == 300) {
-      //std::cout<< "PAST 300" << endl;
-      break;
-    }*/
     if(*it < *it2) 
     {
       it++;
@@ -39,11 +30,11 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
   
     if(*it == *it2) 
     {
-      //std::cout << "intersection found" << std::endl;
       intersectionSet.insert(*it);
       it2++;
       it++;
     }
+
     /* this means the current element in s2 is not in s1 so 
      * move onto the next in element in s2 
      */ 
@@ -51,7 +42,7 @@ std::set<T> setIntersection(std::set<T>& s1, std::set<T>& s2)
     {
       it2++;
     }
-    //i++;
+    
   }
   
   return intersectionSet;

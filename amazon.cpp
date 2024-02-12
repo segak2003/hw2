@@ -80,10 +80,15 @@ int main(int argc, char* argv[])
                 set<string> terms_set;
 
                 while(ss >> term) {
-                  term = convToLower(term);
-                  terms_set = parseStringToWords(term);
-                  for(const string& word : terms_set) {
-                    terms.push_back(word);
+                  if(isdigit(term[0]) && isdigit(term[1]) && isdigit(term[2]) )  {
+                    terms.push_back(term);
+                  }
+                  else {
+                    term = convToLower(term);
+                    terms_set = parseStringToWords(term);
+                    for(const string& word : terms_set) {
+                      terms.push_back(word);
+                    }
                   }
                 }
                 hits = ds.search(terms, 0);
@@ -107,8 +112,7 @@ int main(int argc, char* argv[])
                     ofile.close();
                 }
                 done = true;
-            }
-            //cmds to do:    
+            }  
             else if(cmd == "ADD") 
             {
               string userName;
@@ -116,16 +120,15 @@ int main(int argc, char* argv[])
  
               if(ss >> userName >> hit_result_index) {
                 userName = convToLower(userName);
-                  //what to do if user or product not found?
-                  //std::cout << "hitIndex: " << hit_result_index << " size " << hits.size() << endl;
-                  if(hit_result_index < hits.size() && hit_result_index >= 0) {
-                    Product* currProduct = hits[hit_result_index];
+        
+                  if(hit_result_index <= hits.size() && hit_result_index > 0) {
+                    Product* currProduct = hits[hit_result_index - 1];
 
                     User* currUser = ds.getUser(userName);
 
                     if(currUser == nullptr) {
 
-                      cout << "Invalid user" << endl;
+                      cout << "Invalid request" << endl;
                     }
                     else {
                       ds.addToCart(currUser, currProduct);
@@ -153,7 +156,7 @@ int main(int argc, char* argv[])
                   }
                   
                   if(validUser == false) {
-                    cout << "Invalid user" << endl;
+                    cout << "Invalid username" << endl;
                   }
                   else {
                   ds.buyCart(currUser);
@@ -187,7 +190,6 @@ int main(int argc, char* argv[])
                 cout << "invalid request" << endl;
               }
             }
-	    /* Add support for other commands here */
             else {
                 cout << "Unknown command" << endl;
             }

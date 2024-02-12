@@ -17,9 +17,7 @@ class Movie : public Product
 
     std::set<std::string> keywords() const;
 
-    //idk
-    //bool isMatch(std::vector<std::string>& searchTerms) const;
-
+    
     std::string displayString() const;
     std::string showName() const;
     void dump(std::ostream& os) const;

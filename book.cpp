@@ -17,10 +17,7 @@ Book::~Book()
 
 set<string> Book::keywords() const 
 {
-  //std::cout << endl<< "in book's keywords fucntion " << endl;
-
   set<string> keywordSet = parseStringToWords(name_);
-  //std::cout << "about to parse author: " <<  author_ <<endl;
   
   set<string> author_keywords_set = parseStringToWords(author_);
   set<string>::iterator it = author_keywords_set.begin();
@@ -31,7 +28,6 @@ set<string> Book::keywords() const
     ++it;
   }
 
-  //keywordSet.insert(authorKeywords.begin(),authorKeywords.end());
   keywordSet.insert(ISBN_);
   return keywordSet;
 }

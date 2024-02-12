@@ -5,7 +5,7 @@
 #include <set>
 #include <vector>
 #include <algorithm>
-
+/////ewffewfw
 class Product {
 public:
     Product(const std::string category, const std::string name, double price, int qty);
@@ -31,6 +31,7 @@ public:
      */
     virtual void dump(std::ostream& os) const;
 
+    virtual std::string showName() const  = 0;
     /**
      * Accessors and mutators
      */
